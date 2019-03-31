@@ -8,6 +8,9 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CsvFileParseUtil 
 {
     public <T> List<T> read(Class<T> clazz, InputStream stream) throws IOException 
