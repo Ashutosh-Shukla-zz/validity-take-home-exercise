@@ -11,8 +11,8 @@
 	<groupId>com.validity</groupId>
 	<artifactId>take-home-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>validity-take-home</name>
+	<description>Take home exercise for Validity</description>
 
 	<properties>
 		<java.version>1.8</java.version>

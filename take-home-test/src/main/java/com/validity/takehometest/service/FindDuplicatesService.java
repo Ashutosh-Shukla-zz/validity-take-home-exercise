@@ -38,16 +38,13 @@ public class FindDuplicatesService
         Metaphone metaPhone = new Metaphone();
 
         ArrayList<Person> mockList = new ArrayList<Person>();
-
         ArrayList<Person> uniqueList = new ArrayList<Person>();
-
         Map< Person , List<Person>> duplicateMap = new HashMap< Person, List<Person>>();
 
         for (int i = 0; i < csvPersonList.size(); i++) 
         {
             if (mockList.contains(csvPersonList.get(i)))
                 continue;
-
 
             ArrayList<Person> tempList = new ArrayList<Person>();
             for (int j = i+1; j < csvPersonList.size(); j++) 
@@ -74,7 +71,22 @@ public class FindDuplicatesService
 
 
         //   -----creating list of arraylist to return-------
-        for (Map.Entry<Person, List<Person>> entry : duplicateMap.entrySet()) 
+        totalList = getListFromMap(duplicateMap);
+        
+        totalList.add(uniqueList);
+        logger.debug("totalList size::"+totalList.size());
+
+
+        return totalList;
+        
+    }
+
+    public List< List<Person>> getListFromMap (Map< Person , List<Person>> inputMap)
+    {
+        logger.info("Getting separate lists from map");
+        List< List<Person> > resultList = new ArrayList< List<Person>>();
+
+        for (Map.Entry<Person, List<Person>> entry : inputMap.entrySet()) 
         {
             List<Person> possibleDuplicateList  = new ArrayList<Person>();
             possibleDuplicateList.add(entry.getKey());
@@ -82,15 +94,9 @@ public class FindDuplicatesService
             for (Person per : temp)
                 possibleDuplicateList.add(per);
 
-            totalList.add(possibleDuplicateList);
+            resultList.add(possibleDuplicateList);
         }
-
-        totalList.add(uniqueList);
-        logger.debug("totalList size::"+totalList.size());
-
-
-        return totalList;
-        
+        return resultList;
     }
 
 }
